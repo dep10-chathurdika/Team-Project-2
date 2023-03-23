@@ -64,7 +64,21 @@ public class MainViewController {
     }
 
     @FXML
-    void btnMngStudentsOnAction(ActionEvent event) {
+    void btnMngStudentsOnAction(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+
+        URL fxmlFile = getClass().getResource("/view/StudentsView.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(fxmlFile);
+        AnchorPane root = fxmlLoader.load();
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(btnMngCustomers.getScene().getWindow());
+        stage.setTitle("Manage Students");
+        stage.show();
+        stage.centerOnScreen();
 
     }
 
