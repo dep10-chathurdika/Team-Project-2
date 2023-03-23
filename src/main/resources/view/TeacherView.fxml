@@ -113,9 +113,9 @@
       </HBox>
       <TableView fx:id="tblTeachers" layoutX="47.0" layoutY="442.0" onKeyReleased="#tblTeachersOnKeyReleased" prefHeight="228.0" prefWidth="595.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
          <columns>
-            <TableColumn prefWidth="119.0" text="ID" />
-            <TableColumn prefWidth="244.0" text="NAME" />
-            <TableColumn prefWidth="231.0" text="ADDRESS" />
+            <TableColumn prefWidth="229.0" text="ID" />
+            <TableColumn prefWidth="214.0" text="NAME" />
+            <TableColumn prefWidth="269.0" text="ADDRESS" />
          </columns>
       </TableView>
    </children>

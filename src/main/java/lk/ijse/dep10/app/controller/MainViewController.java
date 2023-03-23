@@ -56,7 +56,11 @@ public class MainViewController {
     }
 
     @FXML
-    void btnMngTeachersOnAction(ActionEvent event) {
+    void btnMngTeachersOnAction(ActionEvent event) throws IOException {
+        Stage stage=(Stage) btnMngCustomers.getScene().getWindow();
+        stage.setTitle("Teachers Form");
+        stage.setScene(new Scene(new FXMLLoader(getClass().getResource("/view/TeacherView.fxml")).load()));
+        stage.show();
 
     }
 
