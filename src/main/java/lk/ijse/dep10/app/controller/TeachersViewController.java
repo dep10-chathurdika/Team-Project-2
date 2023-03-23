@@ -30,6 +30,10 @@ public class TeachersViewController {
     @FXML
     private TextField txtName;
 
+    public void initialize(){
+
+    }
+
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
 
@@ -42,7 +46,16 @@ public class TeachersViewController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
+        if (!isDataValid()) return;
 
+    }
+
+    private boolean isDataValid() {
+        String id = txtId.getText();
+        String name = txtName.getText();
+        String address = txtAddress.getText();
+
+        if ()
     }
 
     @FXML
