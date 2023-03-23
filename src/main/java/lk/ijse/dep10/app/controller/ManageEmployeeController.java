@@ -16,6 +16,7 @@ import javax.sql.rowset.serial.SerialBlob;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.sql.*;
+import java.util.Optional;
 
 public class ManageEmployeeController {
 
@@ -83,6 +84,36 @@ public class ManageEmployeeController {
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
 
+        Employee selectedEmployee = tblEmployees.getSelectionModel().getSelectedItem();
+        Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure to delete employee with student id " + selectedEmployee.getId() + " ?", ButtonType.YES, ButtonType.NO).showAndWait();
+        if (buttonType.isPresent() && buttonType.get() == ButtonType.YES) {
+            Connection connection = DBConnection.getInstance().getConnection();
+            try {
+                connection.setAutoCommit(false);
+                PreparedStatement stmEmployee = connection.prepareStatement("DELETE FROM Employee WHERE employee_id = ?");
+                stmEmployee.setString(1, selectedEmployee.getId());
+                stmEmployee.executeUpdate();
+                connection.commit();
+
+                tblEmployees.getItems().remove(selectedEmployee);
+                if (!tblEmployees.getItems().isEmpty()) btnNewEmployee.fire();
+                connection.commit();
+            } catch (Throwable e) {
+                try {
+                    connection.rollback();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+                e.printStackTrace();
+                new Alert(Alert.AlertType.ERROR, "Failed to delete the item. Try again!").show();
+            } finally {
+                try {
+                    connection.setAutoCommit(true);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
     }
 
     @FXML
