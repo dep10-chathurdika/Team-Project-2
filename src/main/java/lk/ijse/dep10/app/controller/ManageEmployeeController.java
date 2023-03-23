@@ -85,7 +85,7 @@ public class ManageEmployeeController {
     void btnDeleteOnAction(ActionEvent event) {
 
         Employee selectedEmployee = tblEmployees.getSelectionModel().getSelectedItem();
-        Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure to delete employee with student id " + selectedEmployee.getId() + " ?", ButtonType.YES, ButtonType.NO).showAndWait();
+        Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure to delete employee with employee id " + selectedEmployee.getId() + " ?", ButtonType.YES, ButtonType.NO).showAndWait();
         if (buttonType.isPresent() && buttonType.get() == ButtonType.YES) {
             Connection connection = DBConnection.getInstance().getConnection();
             try {
