@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep10.app.ManageEmployeeController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep10.app.controller.ManageEmployeeController">
    <children>
       <Button fx:id="btnNewEmployee" layoutX="45.0" layoutY="36.0" mnemonicParsing="false" onAction="#btnNewEmployeeOnAction" text="+ NEW EMPLOYEE" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="40.0" />
       <Label layoutX="377.0" layoutY="38.0" text="Manage Employees" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="40.0">
@@ -54,7 +54,7 @@
               <columns>
                 <TableColumn prefWidth="122.0" text="ID" />
                 <TableColumn prefWidth="165.0" text="NAME" />
-                  <TableColumn prefWidth="192.0" text="ADDRESS" />
+                  <TableColumn prefWidth="220.0" text="ADDRESS" />
               </columns>
             </TableView>
          </children>
