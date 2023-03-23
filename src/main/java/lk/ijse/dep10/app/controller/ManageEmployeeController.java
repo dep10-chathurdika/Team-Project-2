@@ -1,5 +1,7 @@
 package lk.ijse.dep10.app.controller;
 
+import javafx.application.Platform;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -9,6 +11,10 @@ import javafx.scene.image.ImageView;
 import lk.ijse.dep10.app.db.DBConnection;
 import lk.ijse.dep10.app.model.Employee;
 
+import javax.imageio.ImageIO;
+import javax.sql.rowset.serial.SerialBlob;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.sql.*;
 
 public class ManageEmployeeController {
@@ -50,6 +56,8 @@ public class ManageEmployeeController {
             txtName.setText(current.getName());
             txtAddress.setText(current.getAddress());
         });
+
+        Platform.runLater(btnNewEmployee::fire);
     }
 
     private void loadAllEmployees() {
@@ -94,6 +102,34 @@ public class ManageEmployeeController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
+
+        if (!isDataValid()) return;
+
+        Connection connection = DBConnection.getInstance().getConnection();
+        try {
+            PreparedStatement stmEmployee = connection.prepareStatement("INSERT INTO Employee (employee_id, employee_name, employee_address) VALUES (?, ?, ?)");
+
+            connection.setAutoCommit(false);
+
+            stmEmployee.setString(1, txtID.getText());
+            stmEmployee.setString(2, txtName.getText());
+            stmEmployee.setString(3, txtAddress.getText());
+            stmEmployee.executeUpdate();
+
+            Employee newEmployee = new Employee(txtID.getText(), txtName.getText(), txtAddress.getText());
+
+            connection.commit();
+            tblEmployees.getItems().add(newEmployee);
+            btnNewEmployee.fire();
+        } catch (Throwable e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+            new Alert(Alert.AlertType.ERROR, "Failed to saved the Employee").show();
+            e.printStackTrace();
+        }
 
     }
 
