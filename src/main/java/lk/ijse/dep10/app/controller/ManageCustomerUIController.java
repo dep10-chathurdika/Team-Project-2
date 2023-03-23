@@ -18,7 +18,7 @@ public class ManageCustomerUIController {
     private Button btnSave;
 
     @FXML
-    private TableView<?> tblCustomer;
+    private TableView<String> tblCustomer;
 
     @FXML
     private TextField txtAddress;
