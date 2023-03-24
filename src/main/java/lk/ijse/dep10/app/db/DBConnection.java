@@ -24,7 +24,7 @@ public class DBConnection {
 
             String host = properties.getProperty("mysql.host", "localhost");
             String port = properties.getProperty("mysql.port", "3306");
-            String database = properties.getProperty("mysql.database", "dep10_tx");
+            String database = properties.getProperty("mysql.database", "dep10_git");
             String username = properties.getProperty("mysql.username", "root");
             String password = properties.getProperty("mysql.password", "");
 
